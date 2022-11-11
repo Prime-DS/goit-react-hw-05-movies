@@ -1,7 +1,7 @@
 import { getMovieById } from "api/Api";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
   
 
 export default function MoviePage() {
@@ -9,7 +9,7 @@ export default function MoviePage() {
     const[loading, setLoading]=useState(false);
     const[error, setError]=useState(null);
     const {id} = useParams();
-
+    const navigate = useNavigate();
     useEffect(()=>{
         const fetchMovie = async () => {
             try {
@@ -27,6 +27,10 @@ export default function MoviePage() {
         fetchMovie();
     },[id]);
 
+    const goBack=() =>{
+navigate(-1)
+    };
+    
 const {genres,poster_path,original_title,overview}= state;
 
   return (
@@ -35,7 +39,7 @@ const {genres,poster_path,original_title,overview}= state;
         {error && <p>Error ${error}</p>}
         {state &&(
             <>
-            
+            <button onClick={goBack}> Go back </button>
             <img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt="name movie"/>
             <div>
                 <h2>{original_title}</h2>
