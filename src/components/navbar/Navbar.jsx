@@ -7,12 +7,12 @@ export default function Navbar() {
         return isActive ? `${styles.link} ${styles.active}` : `${styles.link}`;
     }
 
-
   return (
-    <nav className={styles.container}>
+    <header>
+      <nav className={styles.container}>
         <NavLink className={getClassName} to="/"> HOME</NavLink>
         <NavLink className={getClassName} to="/movies" end>Movies </NavLink>
-
-    </nav>
+      </nav>
+    </header>
   )
 }
